@@ -59,12 +59,17 @@ deploy_test:
     - shell
   dependencies:
     - package
-  when: manual # das bedeutet das dieser Job manuell gestartet werden muss (Knopfdruck)
+  #when: manual # das bedeutet das dieser Job manuell gestartet werden muss (Knopfdruck)
   script:
     - docker rm --force tomcat # löscht den container tomcat (wenn der schon existiert)
     - docker image rm --force connect-four # löscht das image connect-four (wenn das schon existiert)
     - docker build -t connect-four . # baut das image connect-four
     - docker run --rm -d --name tomcat -p 8080:8080 connect-four # startet den container connect-four
+  environment:
+    name: test # das ist der name der Umgebung
+    action: start # das ist die action die in der Umgebung ausgeführt wird
+    url: http://localhost:8080/connect-four # das ist die url der Umgebung
+    on_stop: deploy_test_stop # das ist der name des Jobs der ausgeführt wird wenn die Umgebung gestoppt wird
 
 deploy_test_stop:
   stage: deploy
@@ -72,7 +77,9 @@ deploy_test_stop:
     - shell
   when: manual
   script:
-    - docker stop tomcat # stoppt den container tomcat
-    - docker rm tomcat # löscht den container tomcat
-    - docker image rm connect-four # löscht das image connect-four
+    - docker rm --force tomcat # löscht den container tomcat
+    - docker image rm --force connect-four # löscht das image connect-four
+  environment:
+    name: test
+    action: stop
 
