@@ -4,6 +4,9 @@ stages:
 
 image: maven:3.9.6-amazoncorretto-21 # Das ist das Image, das für alle Jobs verwendet wwerden soll
 
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=./.m2/repository" # das ist der Pfad wo das Maven Repository gespeichert wird, eine Globale enviroment variable die für alle Jobs gilt
+
 build: # Das ist der name des Jobs und jeder job gehört zu einem Stage (bspw wenn build nur für win dann build-win)
   stage: build
   tags:
