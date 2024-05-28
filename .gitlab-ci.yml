@@ -2,6 +2,7 @@ stages:
   - build
   - test
   - package
+  - deploy
 
 image: maven:3.9.6-amazoncorretto-21 # Das ist das Image, das für alle Jobs verwendet wwerden soll
 
@@ -25,7 +26,7 @@ build: # Das ist der name des Jobs und jeder job gehört zu einem Stage (bspw we
 # leere Zeile ist notwendig um die Jobs zu trennen
 
 test:
-  stage: build
+  stage: test
   tags:
     - docker
   dependencies:
@@ -51,4 +52,27 @@ package:
   cache:
     paths:
       - ".m2/repository"
+
+deploy_test:
+  stage: deploy
+  tags:
+    - shell
+  dependencies:
+    - package
+  when: manual # das bedeutet das dieser Job manuell gestartet werden muss (Knopfdruck)
+  script:
+    - docker rm --force tomcat # löscht den container tomcat (wenn der schon existiert)
+    - docker image rm --force connect-four # löscht das image connect-four (wenn das schon existiert)
+    - docker build -t connect-four . # baut das image connect-four
+    - docker run --rm -d --name tomcat -p 8080:8080 connect-four # startet den container connect-four
+
+deploy_test_stop:
+  stage: deploy
+  tags:
+    - shell
+  when: manual
+  script:
+    - docker stop tomcat # stoppt den container tomcat
+    - docker rm tomcat # löscht den container tomcat
+    - docker image rm connect-four # löscht das image connect-four
 
