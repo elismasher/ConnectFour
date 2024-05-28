@@ -53,13 +53,13 @@ public class GameBoard {
     public Player getPlayerAt(int row, int col) {
         if (!checkValidPosition(row, col))
             throw new IllegalArgumentException("Invalid row or column");
-        return board[row][col];
+        return board[this.row - 1 - row][col];
     }
 
     private void setPlayerAt(int row, int col, Player player) {
         if (!checkValidPosition(row, col))
             throw new IllegalArgumentException("Invalid row or column");
-        board[row][col] = player;
+        board[this.row - 1 - row][col] = player;
     }
 
     public boolean checkForConnectFour() {
