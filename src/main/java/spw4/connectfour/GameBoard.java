@@ -59,7 +59,7 @@ public class GameBoard {
     private void setPlayerAt(int row, int col, Player player) {
         if (!checkValidPosition(row, col))
             throw new IllegalArgumentException("Invalid row or column");
-        board[this.row - 1 - row][col] = player;
+        board[row][col] = player;
     }
 
     public boolean checkForConnectFour() {
