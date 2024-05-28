@@ -10,6 +10,13 @@ build: # Das ist der name des Jobs und jeder job gehört zu einem Stage (bspw we
     - docker
   script:
     - mvn compile
+  artifacts: # sind ergebnisse eines jobs die an andere jobs weitergegeben werden (WICHTIG! funktioniert bei uns auch ohne aber nur weil wir einen runner haben)
+    paths:
+      - "target/*" # target ist der standard output ordner von maven
+    expire_in: 2 days # wie lange die artifacts aufbewahrt werden sollen
+  cache:
+    paths:
+      - ".m2/repository" # Maven Repository wird gecached somit muss nicht jedes mal alles neu heruntergeladen werden
 
 # leere Zeile ist notwendig um die Jobs zu trennen
 
