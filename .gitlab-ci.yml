@@ -68,7 +68,7 @@ deploy_test:
   environment:
     name: test # das ist der name der Umgebung
     action: start # das ist die action die in der Umgebung ausgeführt wird
-    url: http://localhost:8080/connect-four # das ist die url der Umgebung
+    url: http://localhost:8080/ConnectFour/ # das ist die url der Umgebung
     on_stop: deploy_test_stop # das ist der name des Jobs der ausgeführt wird wenn die Umgebung gestoppt wird
 
 deploy_test_stop:
