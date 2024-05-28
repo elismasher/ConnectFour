@@ -20,3 +20,15 @@ build: # Das ist der name des Jobs und jeder job gehört zu einem Stage (bspw we
 
 # leere Zeile ist notwendig um die Jobs zu trennen
 
+test:
+  stage: build
+  tags:
+    - docker
+  dependencies:
+    - build # das bedeutet das dieser Job auf die artifacts des build Jobs zugreift
+  script:
+    - mvn test
+  cache:
+    paths:
+      - ".m2/repository"
+
