@@ -52,7 +52,7 @@ analyze:
     - build
     - test
   script:
-    - mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.sonar_project=$SONAR_PROJECT -Dsonar.token=$SONAR_TOKEN
+    - mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.token=$SONAR_TOKEN
   cache:
     paths:
       - ".m2/repository"
