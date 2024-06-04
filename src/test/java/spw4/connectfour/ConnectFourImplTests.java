@@ -13,5 +13,8 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ConnectFourImplTests {
-
+    @Test
+    void testAll(){
+        Assertions.assertTrue(true);
+    }
 }

@@ -1,13 +1,15 @@
 stages:
   - build
   - test
+  - analyze
   - package
   - deploy
 
-image: maven:3.9.6-amazoncorretto-21 # Das ist das Image, das für alle Jobs verwendet wwerden soll
+image: maven:3.9.7-eclipse-temurin-21 # Das ist das Image, das für alle Jobs verwendet wwerden soll
 
 variables:
   MAVEN_OPTS: "-Dmaven.repo.local=./.m2/repository" # das ist der Pfad wo das Maven Repository gespeichert wird, eine Globale enviroment variable die für alle Jobs gilt
+  SONAR_PROJECT: "ConnectFour"                      # das ist der Name des Projekts in SonarQube
 
 build: # Das ist der name des Jobs und jeder job gehört zu einem Stage (bspw wenn build nur für win dann build-win)
   stage: build
@@ -33,6 +35,24 @@ test:
     - build # das bedeutet das dieser Job auf die artifacts des build Jobs zugreift
   script:
     - mvn test
+  artifacts:
+    paths:
+      - "target/surefire-reports/*"
+      - "target/site/jacoco/*"
+    expire_in: 2 days
+  cache:
+    paths:
+      - ".m2/repository"
+
+analyze:
+  stage: analyze
+  tags:
+    - docker
+  dependencies:
+    - build
+    - test
+  script:
+    - mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.sonar_project=$SONAR_PROJECT -Dsonar.token=$SONAR_TOKEN
   cache:
     paths:
       - ".m2/repository"
