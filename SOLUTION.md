@@ -13,6 +13,16 @@ Effort in hours: __
 
 ### Task 1.b
 
+
+
+<!--- describe your solution here --->
+
+### Task 1.c
+
+<!--- describe your solution here --->
+
+## Sonarqube
+
 Zum starten:
 1. Linux Konsole öffnen (wsl)
 ```bash
@@ -31,10 +41,3 @@ docker run -d --name sonarqube --restart always --network runner-net -p 9000:900
 ````
 http://localhost:9000/
 ````
-
-
-<!--- describe your solution here --->
-
-### Task 1.c
-
-<!--- describe your solution here --->

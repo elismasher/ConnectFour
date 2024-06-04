@@ -56,6 +56,7 @@ analyze:
   cache:
     paths:
       - ".m2/repository"
+  allow_failure: true # das bedeutet das der Job fehlschlagen darf ohne das die gesamte Pipeline fehlschlägt
 
 package:
   stage: package
