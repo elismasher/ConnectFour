@@ -35,18 +35,6 @@ public class ConnectFourImpl implements ConnectFour {
         return sb.toString();
     }
 
-    public int calculateStuff() {
-        int i = 0;
-        i += 200;
-        return i;
-    }
-
-    public int calculateOtherStuff() {
-        int i = 0;
-        i += 200;
-        return i;
-    }
-
     public void reset(Player playerOnTurn) {
         currentPlayer = playerOnTurn;
         gameBoard = new GameBoard();
