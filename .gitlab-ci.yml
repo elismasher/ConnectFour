@@ -51,8 +51,8 @@ analyze:
   dependencies:
     - build
     - test
-  script:
-    - mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.token=$SONAR_TOKEN
+  script: # qualitygate.wait=true bedeutet das der Job wartet bis der Quality Gate in SonarQube durchgelaufen ist, wenn der Job fehlschlägt dann wird die Pipeline auch fehlschlagen
+    - mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.token=$SONAR_TOKEN -Dsonar.qualitygate.wait=true
   cache:
     paths:
       - ".m2/repository"
