@@ -135,6 +135,8 @@ jobs:
         with:
           name: package-artifacts
           path: ./target
+      - name: Verify Docker Installation
+        run: docker --version
       - name: Remove existing Docker container
         run: docker rm -f tomcat || true
       - name: Remove existing Docker image
