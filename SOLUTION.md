@@ -30,7 +30,13 @@ Die Aufgabe 1)a) und 1)b wurden bereits in der Übung gemeinsam mit dem Prof. re
 
 ### Task 1.c
 
-<!--- describe your solution here --->
+Ich konnte den Fehler nach einer Stunde intensiver Suche leider nicht finden und musste aufgeben. Ich vermute, dass das Problem an meiner lokalen Installation liegt. Obwohl ich versucht habe, diese neu zu installieren, hat das leider nichts gebracht.
+
+![run](./images/Task_1_c_error.png)
+
+![run](./images/Task_1_c_error_1.png)
+
+![run](./images/Task_1_c_error_2.png)
 
 ## Sonarqube
 
