@@ -124,24 +124,22 @@ jobs:
           name: package-artifacts
           path: target/*.war
 
-  deploy_test:
+  deploy:
     runs-on: self-hosted
     needs: package
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: package-artifacts
+          path: ./target
       - name: Remove existing Docker container
-        run: docker rm --force tomcat || true
+        run: docker rm -f tomcat || true
       - name: Remove existing Docker image
-        run: docker image rm --force connect-four || true
+        run: docker image rm -f connect-four || true
       - name: Build Docker image
         run: docker build -t connect-four .
       - name: Run Docker container
         run: docker run --rm -d --name tomcat -p 8080:8080 connect-four
-
-  deploy_test_stop:
-    runs-on: self-hosted
-    needs: deploy_test
-    steps:
-      - name: Stop Docker container
-        run: docker rm --force tomcat
-      - name: Remove Docker image
-        run: docker image rm --force connect-four
