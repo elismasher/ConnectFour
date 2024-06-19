@@ -10,6 +10,17 @@ Effort in hours: __
 ### Task 1.a
 
 <!--- describe your solution here --->
+```mvn compile```  
+![run](./images/Task_1_a_1.png)
+
+```mvn test```  
+![run](./images/Task_1_a_2.png)
+
+```mvn package```  
+![run](./images/Task_1_a_3.png)
+
+```mvn tomcat7:run```  
+![run](./images/Task_1_a_4.png)
 
 ### Task 1.b
 
