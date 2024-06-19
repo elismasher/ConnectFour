@@ -1,15 +1,16 @@
 SPW4 - Exercise 3
 =================
 
-Name: _____________
+Name: Rist Elias
 
-Effort in hours: __
+Effort in hours: 2h
 
 ## 1. Connect Four Web Application and CI/CD Pipeline
 
+Die Aufgabe 1)a) und 1)b wurden bereits in der Übung gemeinsam mit dem Prof. realisiert.
+
 ### Task 1.a
 
-<!--- describe your solution here --->
 ```mvn compile```  
 ![run](./images/Task_1_a_1.png)
 
@@ -23,10 +24,8 @@ Effort in hours: __
 ![run](./images/Task_1_a_4.png)
 
 ### Task 1.b
+![run](./images/Task_1_b.png)
 
-
-
-<!--- describe your solution here --->
 
 ### Task 1.c
 
